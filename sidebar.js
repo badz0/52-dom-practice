@@ -1,22 +1,17 @@
+const menu = document.getElementsByClassName('menu')[0];
 
-const open = document.getElementById('open');
-console.log('open: ', open);
+function toggle() {
+  menu.classList.toggle('menu--open');
+}
+document.getElementById('open')
+  .addEventListener('click', toggle);
 
-
-const menu = document.querySelector('.menu');
-const close = menu.querySelector('.menu-close');
-
-open.addEventListener('click', () => {
-  menu.classList.toggle('opened');
-});
-
-close.addEventListener('click', () => {
-  menu.classList.remove('opened');
-});
+document.getElementById('close')
+  .addEventListener('click', toggle);
 
 
-document.addEventListener('click', (event) => {
-  if (event.target !== menu && menu.classList.contains('opened')) {
-    menu.classList.remove('opened');
+document.body.addEventListener('click', (event) => {
+  if (event.target !== menu) {
+    menu.classList.remove('menu--open');
   }
-})
+}, { capture: true });
